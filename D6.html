@@ -30,6 +30,8 @@
       .myHeading {
         color: #ff00d6;
       }
+      #changeMyColor {
+      }
     </style>
   </head>
 
@@ -101,12 +103,12 @@
         let divs = document.getElementsByTagName("div");
         for (let i = 0; i < divs.length; i++) {
           let paragraphs = divs[i].getElementsByTagName("p");
-          for (let j = 0; j < paragraphs.length; i++) {
+          for (let j = 0; j < paragraphs.length; j++) {
             paragraphs[j].textContent = "cambio testo del paragrafo";
           }
         }
       };
-      changePcontent;
+      changePcontent();
 
       /* ESERCIZIO 4
              Scrivi una funzione che cambi la proprietà href di ogni link (tranne quello nel footer) con il valore https://www.google.com
@@ -121,7 +123,7 @@
           }
         }
       };
-      changeUrls();
+      //changeUrls();
 
       /* ESERCIZIO 5
              Scrivi una funzione che aggiunga un nuovo elemento lista alla seconda lista non ordinata
@@ -173,13 +175,26 @@
              Scrivi una funzione che rimuova l'ultima lettera dall'h1 ogni volta che l'utente lo clicca
             */
 
-      const makeItClickable = function () {};
+      const makeItClickable = function () {
+        const h1Str = document.getElementById("titolo");
 
+        h1Str.addEventListener("click", function () {
+          h1Str.innerText = h1Str.innerText.substring(0, h1Str.innerText.length - 1);
+        });
+      };
+      makeItClickable();
       /* ESERCIZIO 10
              Crea una funzione che, al click sul footer, riveli l'URL del link interno come contenuto di un alert()
             */
 
-      const revealFooterLink = function () {};
+      const revealFooterLink = function () {
+        const footerUrl = document.getElementsByTagName("footer")[0];
+        footerUrl.addEventListener("click", function () {
+          const url = footerUrl.querySelector("a");
+          alert(url);
+        });
+      };
+      revealFooterLink();
 
       /* ESERCIZIO 11
              Crea una funzione che crei una tabella nell'elemento con id "tableArea".
@@ -204,7 +219,18 @@
             Crea una funzione che cambi il colore del h2 con id "changeMyColor" con un colore random ad ogni click ricevuto
           */
 
-      const changeColorWithRandom = function () {};
+      const changeColorWithRandom = function () {
+        const h2stringa = document.getElementById("changeMyColor");
+        h2stringa.addEventListener("click", function () {
+          randomColor = "rgb(" + r() + "," + r() + "," + r() + ")";
+          h2stringa.style.color = randomColor;
+        });
+      };
+      changeColorWithRandom();
+
+      function r() {
+        return Math.floor(Math.random() * 255);
+      }
     </script>
   </body>
 </html>
